@@ -1,0 +1,124 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="StockManagement.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .welcomeUser {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 25px;
+        }
+
+        .dynamicUser {
+            font-weight: lighter;
+        }
+
+        .userType {
+            font-weight: lighter;
+            color: lightgrey;
+            margin-left: 25%;
+            opacity: 0.7;
+        }
+
+        #sidebar {
+            height: 100vw;
+            position: fixed;
+        }
+
+        .sidebar-open {
+            margin-left: 270px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form runat="server">
+            <div class="wrapper d-flex align-items-stretch">
+                <nav id="sidebar">
+                    <div class="custom-menu">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h1><a href="Dashboard.aspx" class="logo">Stonks</a></h1>
+                        <p class="welcomeUser">
+                            Welcome
+                            <asp:Label ID="User" Text="" CssClass="dynamicUser" runat="server" /><span class="dynamicUser">!</span>
+                            <asp:Label ID="UserType" CssClass="userType mb-4" Text="" runat="server" />
+                        </p>
+
+                        <ul class="list-unstyled components mb-5" id="sidebar-list">
+                            <li class="active">
+                                <a href="Dashboard.aspx"><span class="fas fa-tachometer-alt mr-3"></span>Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="Customer.aspx"><span class="fa fa-user mr-3"></span>Customer</a>
+                            </li>
+                            <asp:Panel runat="server" ID="UserNavigation">
+                                <li>
+                                    <a href="User.aspx"><span class="fa fa-user-tie mr-3"></span>User</a>
+                                </li>
+                            </asp:Panel>
+                            <li>
+                                <a href="Category.aspx"><span class="fa fa-list mr-3"></span>Category</a>
+                            </li>
+                            <li>
+                                <a href="Items.aspx"><span class="fa fa-newspaper mr-3"></span>Items</a>
+                            </li>
+                            <li>
+                                <a href="Supplier.aspx"><span class="fa fa-briefcase mr-3"></span>Suppliers</a>
+                            </li>
+                            <li>
+                                <a href="Sales.aspx"><span class="fa fa-bullhorn mr-3"></span>Sales</a>
+                            </li>
+                            <li>
+                                <a href="Transactions.aspx"><span class="fas fa-history mr-3"></span>Transaction history</a>
+                            </li>
+                            <asp:Panel runat="server" CssClass="mt-4" Visible="false" ID="ChangePassPanel">
+                                <li>
+                                    <a href="UpdatePass.aspx"><span class="fa fa-lock mr-3"></span>Change Password</a>
+                                </li>
+                            </asp:Panel>
+                            
+                        </ul>
+                    </div>
+                </nav>
+
+
+                <div id="content" class="p-4 p-md-5 pt-5 sidebar-open">
+                    <div class="float-right">
+                        <asp:Button ID="LogoutBtn" Text="Log Out" CssClass="btn btn-danger" runat="server" OnClick="LogoutBtn_Click" />
+                    </div>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </form>
+    </div>
+    <asp:ContentPlaceHolder ID="js" runat="server">
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/sidebar.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="./js/jquery.dataTables.min.js"></script>
+        <script src="./js/dataTables.bootstrap4.min.js"></script>
+        <script src="./js/datatables.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    </asp:ContentPlaceHolder>
+</body>
+</html>
